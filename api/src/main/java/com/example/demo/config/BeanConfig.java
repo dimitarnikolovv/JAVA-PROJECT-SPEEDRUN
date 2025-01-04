@@ -1,4 +1,6 @@
 package com.example.demo.config;
+
+import com.example.demo.model.CategoryEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +12,8 @@ public class BeanConfig {
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
-        // TODO add type map for CategoryEntity to String
-        
+        modelMapper.typeMap(CategoryEntity.class, String.class)
+                .setConverter(context -> context.getSource().getName());
 
         return modelMapper;
     }
