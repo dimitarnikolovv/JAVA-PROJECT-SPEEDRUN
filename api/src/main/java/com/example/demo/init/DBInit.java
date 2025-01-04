@@ -4,6 +4,7 @@ import com.example.demo.dto.enums.RoleEnum;
 import com.example.demo.model.UserEntity;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CategoryService;
+import com.example.demo.service.ImageService;
 import com.example.demo.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ public class DBInit implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
     private final ItemService itemService;
     private final CategoryService categoryService;
+    private final ImageService imageService;
 
 
     @Value("${admin.email}")
@@ -53,6 +55,8 @@ public class DBInit implements CommandLineRunner {
         }
         categoryService.seedCategories();
         itemService.seedItems();
-        // TODO seed orders and default image
+        imageService.seedDefaultImage();
+
+        // TODO seed orders
     }
 }
